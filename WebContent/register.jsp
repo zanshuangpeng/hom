@@ -40,6 +40,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
       });
     });
   </script>
+ 
 <div class="banner-bg banner-sec">	
 	  <div class="container">
 			 <div class="header">
@@ -52,13 +53,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						</label>
 						<input id="mobile_menu" type="checkbox">
 					  <ul class="nav">
-						  <li class="dropdown1"><a href="bicycles.html">store</a> 
+						   <li class="dropdown1"><a href="index.jsp">Index</a> 
+						  <li class="dropdown1"><a href="bicyclesController">store</a> 
 						  </li>
-						  <li class="dropdown1"><a href="parts.html">Login</a>
+						  <li class="dropdown1"><a href="login.jsp">Login</a>
 						 </li>      
-						 <li class="dropdown1"><a href="accessories.html">user</a>
+						 <li class="dropdown1"><a href="register.jsp">Register</a>
 						 </li>               
-						  <a class="shop" href="cart.html"><img src="images/cart.png" alt=""/></a>
+						  <a class="shop" href="Cart"><img src="images/cart.png" alt=""/></a>
 					  </ul>
 				 </div>
 				 <div class="clearfix"></div>
@@ -73,12 +75,26 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 										<h3>个人信息</h3>
 										<div>
 											<span>用户名<label>*</label></span>
-											<input type="text" name="name"> 
+											<input id="name" type="text" value="0-20个字符" name="name"
+							onfocus="this.value=''"
+							onblur="if (this.value == '') {this.value = '0-20个字符';}checkName(this.value)"> 
 										</div>
 										<div>
-											<span>邮箱地址<label>*</label></span>
-											<input type="text" name="mail"> 
+											<span id="nameMessage"></span>
 										</div>
+										
+										<div>
+											<span>邮箱地址<label>*</label></span>
+											<input type="text" id="mail" value="E-Mail" name="mail"
+							onfocus="this.value = '';"
+							onblur="if (this.value == '') {this.value = 'E-Mail';}validatemail()">
+
+										</div>
+										<div>
+											<span id="mailMessage"></span>
+										</div>
+										
+										
 										
 								</div>
 								<div class="clear"> </div>
@@ -86,19 +102,125 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 										<h3>登录信息</h3>
 										<div>
 											<span>密码<label>*</label></span>
-											<input type="password" name="password">
+											<input type="text" id="pass" value="6-20个字符" name="password"
+							onfocus="this.value = '';this.type='password'"
+							onblur="if (this.value == '') {this.value = '6-20个字符';this.type='text'}validatePassword();">
+
 										</div>
 										<div>
+											<span id="passMessage"></span>
+										</div>
+										
+										<div>
 											<span>确认密码<label>*</label></span>
+											<input type="text" id="repass" value="6-20个字符" name="repassword"
+							onfocus="this.value = '';this.type='password'"
+							onblur="if (this.value == '') {this.value = '6-20个字符';this.type='text'}validateRePassword();">
 											
 										</div>
+										<div>
+											<span id="repassMessage"></span>
+										</div>
+											
 										<div class="clear"> </div>
 								</div>
 								<div class="clear"> </div>
 								<input type="submit" value="提交">
 						</form>
+						<script type="text/javascript">
+				//查看用户名是否被注册   ajax
+				function checkName(str) {
+					var xmlhttp;
+					if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
+						xmlhttp = new XMLHttpRequest();
+					} else {// code for IE6, IE5
+						xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+					}
+					xmlhttp.onreadystatechange = function() {
+						if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+							var i = xmlhttp.responseText;
+							if (i == "1") {//用户名没有被注册
+
+								document.getElementById("nameMessage").innerHTML = "<span style='color:green'>用户名可以使用!</span>";
+
+							} else {
+
+								document.getElementById("nameMessage").innerHTML = "<span style='color:red'>用户名已经注册!</span>";
+							}
+						}
+					}
+
+					xmlhttp.open("GET", "registCheck?name=" + str, true);
+					xmlhttp.send();
+				}
+				//邮箱格式验证
+				function validatemail() {
+					var mailElement = document.getElementById("mail");
+					var msgElement = document.getElementById("mailMessage");
+					if (mailElement.value == "") {
+
+						msgElement.innerHTML = "<span style='color:red'>邮箱不能为空!</span>";
+						return false;
+					}
+					if (/^\w+@\w+\.\w+$/.test(mailElement.value)) {
+
+						msgElement.innerHTML = "<span style='color:green'>邮箱格式正确!</span>";
+						return true;
+					} else {
+
+						msgElement.innerHTML = "<span style='color:red'>邮箱输入格式错误!</span>";
+						return false;
+					}
+				}
+
+				//第一次输入密码时验证,非空，长度
+				function validatePassword() {
+					var msgElement = document.getElementById("passMessage");
+					var passElement = document.getElementById("pass");
+					if (passElement.value == "") {
+						msgElement.innerHTML = "<span style='color:red'>密码不能为空!</span>";
+						return false;
+					}
+					if (/^\w{6,20}$/.test(passElement.value)) {
+						msgElement.innerHTML = "<span style='color:green'>密码格式正确!</span>";
+						return true;
+					} else {
+						msgElement.innerHTML = "<span style='color:red'>密码长度应该在6-20之间!</span>";
+						return false;
+					}
+				}
+
+				//第二次输入密码时验证，非空，长度，两次密码一致
+				function validateRePassword() {
+					var passElement = document.getElementById("pass");
+					var repassElement = document.getElementById("repass");
+					var msgElement = document.getElementById("repassMessage");
+					if (repassElement.value == "") {
+						msgElement.innerHTML = "<span style='color:red'>密码不能为空!</span>";
+						return false;
+					}
+					if (!(/^\w{6,20}$/.test(repassElement.value))) {
+						msgElement.innerHTML = "<span style='color:red'>密码长度应该在6-20之间!</span>";
+						return false;
+					}
+					if (passElement.value == repassElement.value) {
+						msgElement.innerHTML = "<span style='color:green'>密码格式正确!</span>";
+						return true;
+					} else {
+						msgElement.innerHTML = "<span style='color:red'>两次密码不一致!</span>";
+						return false;
+					}
+				}
+				
+				function validate() {
+		            return validateName()&&validatePassword()&&validateRePassword()&&validatemail();
+		        }
+			</script>
+						
+						
 	 </div>
 </div>
+
 <!---->
 <div class="footer">
 	 <div class="container wrap">

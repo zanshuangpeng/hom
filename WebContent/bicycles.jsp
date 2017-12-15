@@ -53,13 +53,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						</label>
 						<input id="mobile_menu" type="checkbox">
 					   <ul class="nav">
-						  <li class="dropdown1"><a href="bicycles.html">Store</a> 
+						  <li class="dropdown1"><a href="index.jsp">Index</a> 
+						  <li class="dropdown1"><a href="bicyclesController">store</a> 
 						  </li>
-						  <li class="dropdown1"><a href="parts.html">Login</a>
+						  <li class="dropdown1"><a href="login.jsp">Login</a>
 						 </li>      
-						 <li class="dropdown1"><a href="accessories.html">user</a>
+						 <li class="dropdown1"><a href="register.jsp">Register</a>
 						 </li>               
-						  <a class="shop" href="cart.html"><img src="images/cart.png" alt=""/></a>
+						  <a class="Cart" href="Cart"><img src="images/cart.png" alt=""/></a>
 					  </ul>
 				 </div>
 				 <div class="clearfix"></div>
@@ -68,158 +69,40 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </div>
 <!--/banner-->
 <div class="bikes">		 
-	 <div class="mountain-sec">
-		 <h2>MOUNTAIN BIKES</h2>
+	<a href="m-bicycesController?typeid=1">M-bicycles</a>
+	<a href="m-bicycesController?typeid=2">S-bicycles</a>
+	<a href="m-bicycesController?typeid=3">R-bicycles</a>
+	 <div class="road-sec" >
+		 <c:if  test="${requestScope.typeid==1}">
+   			<h2>MOUNTAIN BIKES</h2>
+		 </c:if>
+		 <c:if  test="${requestScope.typeid==2}">
+   			<h2>SINGLE SPEED-BIKES</h2>
+		 </c:if>
+		 <c:if  test="${requestScope.typeid==3}">
+   			<h2>ROAD-BIKES</h2>
+		 </c:if>
+		 
 		 <c:forEach items="${list }" var="p">
-		 <a href="single.html"><div class="bike">				 
+		 <a href="ProductFindById?id=${p.id}"><div class="bike">				 
 			 <img src="images/bik${p.id}.jpg" alt=""/>
 		     <div class="bike-cost">
 					 <div class="bike-mdl">
 						 <h4>${p.name }<span>$${p.price }</span></h4>
 					 </div>
 					 <div class="bike-cart">						 
-						 <a class="buy" href="single.html">BUY NOW</a>
+						 <a class="buy" href="ProductFindById?id=${p.id}">BUY NOW</a>
 					 </div>
 					 <div class="clearfix"></div>
 				 </div>
 				 <div class="fast-viw">
-						<a href="single.html">Quick View</a>
+						<a href="ProductFindById?id=${p.id}">Quick View</a>
 				 </div>
 			 </div></a>
 			 	</c:forEach>
 			 
 		 
-	  <div class="singlespeed-sec">
-		   <h2>SINGLE SPEED-BIKES</h2>
-			 <a href="single.html"><div class="bike">				 
-				 <img src="images/s1.jpg" alt=""/>
-				 <div class="bike-cost">
-					 <div class="bike-mdl">
-						 <h4>NAME<span>Model:M4585</span></h4>
-					 </div>
-					 <div class="bike-cart">						 
-						 <a class="buy" href="single.html">BUY NOW</a>
-					 </div>
-					 <div class="clearfix"></div>
-				 </div>
-				 <div class="fast-viw">
-						<a href="single.html">Quick View</a>
-				 </div>
-			 </div></a>
-			 <a href="single.html"><div class="bike">				 
-				 <img src="images/s2.jpg" alt=""/>
-				 <div class="bike-cost">
-					 <div class="bike-mdl">
-						 <h4>NAME<span>Model:M4585</span></h4>
-					 </div>
-					 <div class="bike-cart">						 
-						 <a class="buy" href="single.html">BUY NOW</a>
-					 </div>
-					 <div class="clearfix"></div>
-				 </div>
-				 <div class="fast-viw">
-						<a href="single.html">Quick View</a>
-				 </div>
-			 </div></a>
-			 <a href="single.html"><div class="bike none2">				 
-				 <img src="images/s3.jpg" alt=""/>
-				 <div class="bike-cost">
-					 <div class="bike-mdl">
-						 <h4>NAME<span>Model:M4585</span></h4>
-					 </div>
-					 <div class="bike-cart">						 
-						 <a class="buy" href="single.html">BUY NOW</a>
-					 </div>
-					 <div class="clearfix"></div>
-				 </div>
-				 <div class="fast-viw">
-						<a href="single.html">Quick View</a>
-				 </div>
-			 </div></a>
-			 <a href="single.html"><div class="bike none1">				 
-				 <img src="images/s4.jpg" alt=""/>
-				 <div class="bike-cost">
-					 <div class="bike-mdl">
-						 <h4>NAME<span>Model:M4585</span></h4>
-					 </div>
-					 <div class="bike-cart">						 
-						 <a class="buy" href="single.html">BUY NOW</a>
-					 </div>
-					 <div class="clearfix"></div>
-				 </div>
-				 <div class="fast-viw">
-						<a href="single.html">Quick View</a>
-				 </div>
-			 </div></a>
-			 <div class="clearfix"></div>
-		 </div>
-		 
-		 <div class="road-sec">
-		   <h2>ROAD-BIKES</h2>
-			 <a href="single.html"><div class="bike">				 
-				 <img src="images/r1.jpg" alt=""/>
-				 <div class="bike-cost">
-					 <div class="bike-mdl">
-						 <h4>NAME<span>Model:M4585</span></h4>
-					 </div>
-					 <div class="bike-cart">						 
-						 <a class="buy" href="single.html">BUY NOW</a>
-					 </div>
-					 <div class="clearfix"></div>
-				 </div>
-				 <div class="fast-viw">
-						<a href="single.html">Quick View</a>
-				 </div>
-			 </div></a>
-			 <a href="single.html"><div class="bike">				 
-				 <img src="images/r3.jpg" alt=""/>
-				 <div class="bike-cost">
-					 <div class="bike-mdl">
-						 <h4>NAME<span>Model:M4585</span></h4>
-					 </div>
-					 <div class="bike-cart">						 
-						 <a class="buy" href="single.html">BUY NOW</a>
-					 </div>
-					 <div class="clearfix"></div>
-				 </div>
-				 <div class="fast-viw">
-						<a href="single.html">Quick View</a>
-				 </div>
-			 </div></a>
-			 <a href="single.html"><div class="bike none2">				 
-				 <img src="images/r2.jpg" alt=""/>
-				 <div class="bike-cost">
-					 <div class="bike-mdl">
-						 <h4>NAME<span>Model:M4585</span></h4>
-					 </div>
-					 <div class="bike-cart">						 
-						 <a class="buy" href="single.html">BUY NOW</a>
-					 </div>
-					 <div class="clearfix"></div>
-				 </div>
-				 <div class="fast-viw">
-						<a href="single.html">Quick View</a>
-				 </div>
-			 </div></a>
-			 <a href="single.html"><div class="bike none1">				 
-				 <img src="images/r4.jpg" alt=""/>
-				 <div class="bike-cost">
-					 <div class="bike-mdl">
-						 <h4>NAME<span>Model:M4585</span></h4>
-					 </div>
-					 <div class="bike-cart">						 
-						 <a class="buy" href="single.html">BUY NOW</a>
-					 </div>
-					 <div class="clearfix"></div>
-				 </div>
-				 <div class="fast-viw">
-						<a href="single.html">Quick View</a>
-				 </div>
-			 </div></a>
-			 <div class="clearfix"></div>
-		 </div>
-		 
-	 </div>
+	  
 </div>
 <!---->
 <div class="footer">

@@ -64,13 +64,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						</label>
 						<input id="mobile_menu" type="checkbox">
 					   <ul class="nav">
+					    <li class="dropdown1"><a href="index.jsp">Index</a> 
 						  <li class="dropdown1"><a href="bicyclesController">store</a> 
 						  </li>
-						  <li class="dropdown1"><a href="parts.html">Login</a>
+						  <li class="dropdown1"><a href="login.jsp">Login</a>
 						 </li>      
-						 <li class="dropdown1"><a href="accessories.html">user</a>
+						 <li class="dropdown1"><a href="register.jsp">Register</a>
 						 </li>               
-						  <a class="shop" href="cart.html"><img src="images/cart.png" alt=""/></a>
+						  <a class="shop" href="Cart"><img src="images/cart.png" alt=""/></a>
 					  </ul>
 				 </div>
 				 <div class="clearfix"></div>
